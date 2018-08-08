@@ -1,21 +1,21 @@
-# eth-json-rpc-infura
+# irc-json-rpc-infura
 
 `json-rpc-engine` middleware for infura's REST endpoints.
 
 ### usage as provider
 
 ```js
-const createInfuraProvider = require('eth-json-rpc-infura/src/createProvider')
-const Ethjs = require('ethjs')
+const createInfuraProvider = require('irc-json-rpc-infura/src/createProvider')
+const Ircjs = require('ircjs')
 
 const provider = createInfuraProvider({ network: 'mainnet' })
-const eth = new Ethjs(provider)
+const irc = new Ircjs(provider)
 ```
 
 ### usage as middleware
 
 ```js
-const createInfuraMiddleware = require('eth-json-rpc-infura')
+const createInfuraMiddleware = require('irc-json-rpc-infura')
 const RpcEngine = require('json-rpc-engine')
 
 const engine = new RpcEngine()
