@@ -1,13 +1,13 @@
 {
-  "name": "eth-json-rpc-infura",
-  "version": "3.1.2",
+  "name": "irc-json-rpc-infura",
+  "version": "0.0.1",
   "main": "src/index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "cross-fetch": "^2.1.1",
-    "eth-json-rpc-middleware": "^1.5.0",
+    "irc-json-rpc-middleware": "git+https://github.com/AuraMask/irc-json-rpc-middleware.git",
     "json-rpc-engine": "^3.4.0",
     "json-rpc-error": "^2.0.0",
     "tape": "^4.8.0"
@@ -16,15 +16,18 @@
   "scripts": {
     "test": "node test/index.js"
   },
-  "author": "",
+  "author": "IrChain Team <contact@irchain.io>",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kumavis/eth-json-rpc-infura.git"
+    "url": "git+https://github.com/AuraMask/irc-json-rpc-infura.git"
   },
   "bugs": {
-    "url": "https://github.com/kumavis/eth-json-rpc-infura/issues"
+    "url": "https://github.com/AuraMask/irc-json-rpc-infura/issues"
   },
-  "homepage": "https://github.com/kumavis/eth-json-rpc-infura#readme",
-  "description": ""
+  "homepage": "https://github.com/AuraMask/irc-json-rpc-infura#readme",
+  "description": "`json-rpc-engine` middleware for infura's REST endpoints.",
+  "keywords": [
+    "irchain"
+  ]
 }
