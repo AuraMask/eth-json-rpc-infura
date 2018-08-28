@@ -28,7 +28,7 @@ function createInfuraMiddleware(opts = {}) {
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
         // attempt request
-        await performFetch(network, req, res);
+        await performFetch(network, req, res).catch(console.error);
         // request was succesful
         break;
       } catch (err) {
@@ -73,14 +73,11 @@ async function performFetch(network, req, res) {
     switch (response.status) {
       case 405:
         throw new JsonRpcError.MethodNotFound();
-
       case 418:
         throw createRatelimitError();
-
       case 503:
       case 504:
         throw createTimeoutError();
-
       default:
         throw createInternalError(rawData);
     }
@@ -105,9 +102,9 @@ function fetchConfigFromReq({network, req}) {
   const {method, params} = cleanReq;
 
   const fetchParams = {};
-  let fetchUrl = `https://api.infura.io/v1/jsonrpc/${network}`;
   const isPostMethod = POST_METHODS.includes(method);
-  if (isPostMethod) {
+  let fetchUrl = _pickFetchUrl(network);
+  if (isPostMethod || !_isEthNet(network)) {
     fetchParams.method = 'POST';
     fetchParams.headers = {
       'Accept': 'application/json',
@@ -121,6 +118,21 @@ function fetchConfigFromReq({network, req}) {
   }
 
   return {fetchUrl, fetchParams};
+}
+
+function _pickFetchUrl(network) {
+  switch (network) {
+    case 'irc_mainnet':
+      return 'http://112.74.96.198:8545';
+    case 'localhost':
+      return 'http://localhost:8545/';
+    default:
+      if (_isEthNet(network)) {
+        network = network.split(/eth[ _]+/)[1];
+        return `https://api.infura.io/v1/jsonrpc/${network}`;
+      }
+      throw new Error('Invalid network');
+  }
 }
 
 // strips out extra keys that could be rejected by strict nodes like parity
@@ -147,4 +159,8 @@ function createTimeoutError() {
 function createInternalError(msg) {
   const err = new Error(msg);
   return new JsonRpcError.InternalError(err);
+}
+
+function _isEthNet(network) {
+  return network.match(/eth[ _]+/);
 }
