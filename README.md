@@ -1,4 +1,4 @@
-# irc-json-rpc-infura
+# irc-json-rpc-infura [![CircleCI](https://circleci.com/gh/AuraMask/irc-json-rpc-infura.svg?style=svg)](https://circleci.com/gh/AuraMask/irc-json-rpc-infura)
 
 `json-rpc-engine` middleware for infura's REST endpoints.
 
