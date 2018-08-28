@@ -3,7 +3,7 @@ const {fetchConfigFromReq} = require('../src/index');
 
 test('fetchConfigFromReq - basic', (t) => {
 
-  const network = 'mainnet';
+  const network = 'eth_mainnet';
   const req = {
     method: 'irc_getBlockByNumber',
     params: ['0x482103', true],
@@ -18,7 +18,7 @@ test('fetchConfigFromReq - basic', (t) => {
 
 test('fetchConfigFromReq - basic', (t) => {
 
-  const network = 'ropsten';
+  const network = 'eth_ropsten';
   const req = {
     method: 'irc_sendRawTransaction',
     params: ['0x0102030405060708090a0b0c0d0e0f'],
@@ -40,7 +40,7 @@ test('fetchConfigFromReq - basic', (t) => {
 
 test('fetchConfigFromReq - strip non-standard keys', (t) => {
 
-  const network = 'ropsten';
+  const network = 'eth_ropsten';
   const req = {
     method: 'irc_sendRawTransaction',
     params: ['0x0102030405060708090a0b0c0d0e0f'],
