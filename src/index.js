@@ -122,7 +122,7 @@ function fetchConfigFromReq({network, req}) {
 
 function _pickFetchUrl(network) {
   switch (network) {
-    case 'irc_mainnet':
+    case 'mainnet':
       return 'http://112.74.96.198:8545';
     case 'localhost':
       return 'http://localhost:8545/';
@@ -131,7 +131,7 @@ function _pickFetchUrl(network) {
         network = network.split(/eth[ _]+/)[1];
         return `https://api.infura.io/v1/jsonrpc/${network}`;
       }
-      throw new Error('Invalid network');
+      return 'http://localhost:8545/';
   }
 }
 
